@@ -16,8 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('users.urls')),
+    # path('api/', include('report.urls')),
+    # path('api/alerts/', include('alert.urls')),  # New alert app
+    path('reports/', include('report.urls')),  # Route for the reports app
+    path('alerts/', include('alert.urls')),  # Route for the alerts app
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
