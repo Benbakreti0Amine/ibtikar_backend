@@ -49,6 +49,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  # Add this
 }
 
 SIMPLE_JWT = {
@@ -157,6 +158,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # settings.py
 INSTALLED_APPS += [
     'channels',
+    'drf_spectacular',
+    
 ]
 
 ASGI_APPLICATION = 'your_project_name.asgi.application'
@@ -170,7 +173,17 @@ CHANNEL_LAYERS = {
 
 
 # Twilio Configuration
-TWILIO_ACCOUNT_SID = 'AC4f384b967504703a530860ec857be37fd'
-TWILIO_AUTH_TOKEN = '0cab8f00c3efeb140d78171df95a8093'
-TWILIO_PHONE_NUMBER = '+213552443940'  # Your Twilio phone number
-POLICE_PHONE_NUMBER = '+213552443940'  # Police station phone number
+# TWILIO_ACCOUNT_SID = 'AC4f384b967504703a530860ec857be37fd'
+# TWILIO_AUTH_TOKEN = '0cab8f00c3efeb140d78171df95a8093'
+# TWILIO_PHONE_NUMBER = '+213552443940'  # Your Twilio phone number
+# POLICE_PHONE_NUMBER = '+213552443940'  # Police station phone number
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Or your email provider's SMTP server
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'f.bencharef@esi-sba.dz'
+EMAIL_HOST_PASSWORD = 'amgp jrjh cmza dchq'  # Use an app password for security
+EMERGENCY_CONTACT_EMAIL = 'f.bencharef@esi-sba.dz'
+DEFAULT_FROM_EMAIL = 'f.bencharef@esi-sba.dz'
