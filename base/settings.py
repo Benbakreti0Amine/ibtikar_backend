@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    'corsheaders'
+    'corsheaders',
+    'sos',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,25 @@ CSRF_TRUSTED_ORIGINS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# settings.py
+INSTALLED_APPS += [
+    'channels',
+]
+
+ASGI_APPLICATION = 'your_project_name.asgi.application'
+
+# Add the channel layers configuration
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}
+
+
+# Twilio Configuration
+TWILIO_ACCOUNT_SID = 'AC4f384b967504703a530860ec857be37fd'
+TWILIO_AUTH_TOKEN = '0cab8f00c3efeb140d78171df95a8093'
+TWILIO_PHONE_NUMBER = '+213552443940'  # Your Twilio phone number
+POLICE_PHONE_NUMBER = '+213552443940'  # Police station phone number

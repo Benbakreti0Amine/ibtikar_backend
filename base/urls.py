@@ -27,6 +27,7 @@ urlpatterns = [
     # path('api/alerts/', include('alert.urls')),  # New alert app
     path('reports/', include('report.urls')),  # Route for the reports app
     path('alerts/', include('alert.urls')),  # Route for the alerts app
+    path('sos/', include('sos.urls')), 
 ]
 
 
