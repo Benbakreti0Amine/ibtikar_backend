@@ -17,11 +17,10 @@ from users.models import User
 
 class ReportSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
-    category_choices = serializers.SerializerMethodField()  # New
 
     class Meta:
         model = Report
-        fields = ['id', 'title', 'description', 'severity', 'category', 'category_choices', 
+        fields = ['id', 'title', 'description', 'severity', 'category', 
                   'latitude', 'longitude', 'image', 'video', 'user']
 
     def get_category_choices(self, obj):
@@ -29,3 +28,9 @@ class ReportSerializer(serializers.ModelSerializer):
         Returns the available category choices for the report.
         """
         return Report.CATEGORY_CHOICES
+
+    def get_localisation(self, obj):
+        return {
+            "latitude": obj.latitude,
+            "longitude": obj.longitude
+        }

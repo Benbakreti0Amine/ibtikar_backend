@@ -9,8 +9,7 @@ SECRET_KEY = 'django-insecure-(lp8%$c$*mo6^3r5wd=62j!oc%2azenw_tqd($+#b7+^x@_!0&
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.User'
 
 INSTALLED_APPS = [
@@ -147,6 +146,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
+    'http://192.168.143.79:8000',
 ]
 
 
