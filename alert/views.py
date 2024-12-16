@@ -1,148 +1,3 @@
-# from django.shortcuts import render
-
-# # Create your views here.
-
-
-# from rest_framework import viewsets, permissions
-# from geopy.distance import geodesic
-# from .models import Alert
-# from .serializers import AlertSerializer
-
-# # class AlertViewSet(viewsets.ModelViewSet):
-# #     queryset = Alert.objects.all()
-# #     serializer_class = AlertSerializer
-# #     permission_classes = [permissions.IsAuthenticated]
-
-# #     def get_queryset(self):
-# #         user_profile = self.request.user.profile
-# #         user_location = (float(user_profile.latitude), float(user_profile.longitude))
-
-# #         # Define the radius for filtering alerts (e.g., 5 km)
-# #         ALERT_RADIUS = 5  # in kilometers
-# #         nearby_alerts = []
-
-# #         for alert in Alert.objects.all():
-# #             report_location = (float(alert.report.latitude), float(alert.report.longitude))
-# #             distance = geodesic(user_location, report_location).kilometers
-# #             if distance <= ALERT_RADIUS:
-# #                 nearby_alerts.append(alert.id)
-
-# #         return Alert.objects.filter(id__in=nearby_alerts)
-
-
-# from rest_framework import viewsets, permissions
-# from .models import Alert
-# from .serializers import AlertSerializer
-
-# class AlertViewSet(viewsets.ModelViewSet):
-#     queryset = Alert.objects.all()
-#     serializer_class = AlertSerializer
-#     # permission_classes = [permissions.IsAuthenticated]
-
-#     def list(self, request, *args, **kwargs):
-#         # Override to customize the GET response if needed
-#         return super().list(request, *args, **kwargs)
-
-
-
-
-# # users/views.py
-
-# class UpdateLocationView(APIView):
-#     # permission_classes = [IsAuthenticated]
-
-#     def post(self, request):
-#         latitude = request.data.get('latitude')
-#         longitude = request.data.get('longitude')
-
-#         if latitude is None or longitude is None:
-#             return Response({"error": "Latitude and Longitude are required."}, status=400)
-
-#         user = request.user
-#         user.latitude = latitude
-#         user.longitude = longitude
-#         user.save()
-
-#         return Response({"message": "Location updated successfully"}, status=200)
-
-
-
-
-
-
-
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework.permissions import IsAuthenticated
-# from users.models import User
-
-
-# from alert.utils import calculate_distance, notify_nearby_users  # Add this import
-# from report.models import Report  # Add this import
-
-# class UpdateLocationView(APIView):
-#     # permission_classes = [IsAuthenticated]
-
-#     def post(self, request):
-#         latitude = request.data.get('latitude')
-#         longitude = request.data.get('longitude')
-
-#         if latitude is None or longitude is None:
-#             return Response({"error": "Latitude and Longitude are required."}, status=400)
-
-#         # Update the user's location
-#         user = request.user
-#         user.latitude = latitude
-#         user.longitude = longitude
-#         user.save()
-
-#         # Compare the user's updated location with reports
-#         self.compare_user_location_with_reports(user)
-
-#         return Response({"message": "Location updated successfully"}, status=200)
-
-    # def compare_user_location_with_reports(self, user):
-    #     # Retrieve reports from the database that you want to compare
-    #     reports = Report.objects.filter(latitude__isnull=False, longitude__isnull=False)
-
-    #     for report in reports:
-    #         distance = calculate_distance(user.latitude, user.longitude, report.latitude, report.longitude)
-
-    #         # If the user is within a certain radius of the report, notify the user or others
-    #         if distance <= 5.0:  # For example, 5 km radius
-    #             self.notify_user_about_nearby_report(user, report)
-
-    # def notify_user_about_nearby_report(self, user, report):
-    #     # Notify the user that they are near a report
-    #     message = f"New report nearby: {report.title} at {report.latitude}, {report.longitude}"
-    #     notify_nearby_users(report)  # This will notify the nearby users about the report
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -152,17 +7,17 @@ from rest_framework.permissions import IsAuthenticated
 from users.models import User
 
 
-from alert.utils import calculate_distance, notify_nearby_users  # Add this import
-from report.models import Report  # Add this import
+from alert.utils import calculate_distance, notify_nearby_users  
+from report.models import Report  
 
 
 class UpdateLocationView(APIView):
-    permission_classes = []  # No authentication required for this view, remove this line if you want it to be authenticated by default.
+    permission_classes = [] 
 
     def post(self, request):
         latitude = request.data.get('latitude')
         longitude = request.data.get('longitude')
-        user_id = request.data.get('user_id', None)  # Optional user_id for non-logged-in users
+        user_id = request.data.get('user_id', None)  
 
         # Check if latitude and longitude are provided
         if latitude is None or longitude is None:
