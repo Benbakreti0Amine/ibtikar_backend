@@ -23,8 +23,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('users.urls')),
-    # path('api/', include('report.urls')),
-    # path('api/alerts/', include('alert.urls')),  # New alert app
     path('reports/', include('report.urls')),  # Route for the reports app
     path('alerts/', include('alert.urls')),  # Route for the alerts app
     path('api/sos/', include('sos.urls')),
